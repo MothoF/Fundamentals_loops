@@ -186,17 +186,21 @@ def is_valid_sudoku(board):
     if viable:
         column = []
         n = 0
-        while n<10:
-            for row in board:
-                column.append(row[n])
-            for number in column:
-                if number.isdigit():
-                    if column.count(number) > 1:
-                        viable = False
-                        break
-            if not viable:
-                break
-            n+=1
+        try:
+            while n<10:
+                column = []
+                for row in board:
+                    column.append(row[n])
+                for number in column:
+                    if number.isdigit():
+                        if column.count(number) > 1:
+                            viable = False
+                            break
+                if not viable:
+                    break
+                n+=1
+        except IndexError:
+            pass
     return viable
 
 board = [
